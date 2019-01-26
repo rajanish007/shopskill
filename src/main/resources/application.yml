@@ -1,16 +1,23 @@
 spring:
-    autoconfigure:
-        exclude:org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+  autoconfigure:
+    exclude:org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
 
 mongodb:
-    maat:
-        host: localhost
-        port: 27017
-        database: maat
-    ptah:
-        host: localhost
-        port: 27017
-        database: ptah
+  maat:
+    host: localhost
+    port: 27017
+    database: maat
+  ptah:
+    host: localhost
+    port: 27017
+    database: ptah
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    com.epex.shopskill : ERROR
+    org.hibernate: DEBUG
 
 # App config
 #server.port=8102

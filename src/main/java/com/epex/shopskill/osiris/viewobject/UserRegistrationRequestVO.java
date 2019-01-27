@@ -1,10 +1,10 @@
 package com.epex.shopskill.osiris.viewobject;
 
+import com.epex.shopskill.khepri.annotation.ValidEmail;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -19,14 +19,10 @@ public class UserRegistrationRequestVO {
 
     @NotNull
     @Valid
-    private String fname;
+    private String fullName;
 
     @NotNull
-    @Valid
-    private String lname;
-
-    @NotNull
-    @Email
+    @ValidEmail
     private String email;
 
     @NotNull

@@ -1,4 +1,4 @@
-package com.epex.shopskill.config.mongo;
+package com.epex.shopskill.khepri.config.mongo;
 
 import com.mongodb.MongoClient;
 import lombok.RequiredArgsConstructor;

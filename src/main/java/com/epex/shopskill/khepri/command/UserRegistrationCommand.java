@@ -2,11 +2,13 @@ package com.epex.shopskill.khepri.command;
 
 import com.epex.shopskill.osiris.viewobject.UserRegistrationRequestVO;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
+@Getter
 @AllArgsConstructor
 public class UserRegistrationCommand extends Command {
 
@@ -14,7 +16,7 @@ public class UserRegistrationCommand extends Command {
 
     private Logger logger = LoggerFactory.getLogger(UserRegistrationRequestVO.class);
 
-    public UserRegistrationCommand(UUID transactionId, UserRegistrationRequestVO payload) {
+    public UserRegistrationCommand(String transactionId, UserRegistrationRequestVO payload) {
         super(transactionId);
         this.payload = payload;
         logger.info(this.toString());

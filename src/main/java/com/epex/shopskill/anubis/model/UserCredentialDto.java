@@ -2,7 +2,6 @@ package com.epex.shopskill.anubis.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
 
 import java.util.Date;
 
@@ -10,10 +9,10 @@ import java.util.Date;
 @NoArgsConstructor
 public class UserCredentialDto {
 
-    private ObjectId _id;
+    private String _id;
 
     private String userId;
-    private String name;
+    private String fullName;
 
     private String email;
 

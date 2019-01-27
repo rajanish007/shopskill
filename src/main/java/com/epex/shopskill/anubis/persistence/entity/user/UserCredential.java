@@ -2,45 +2,54 @@ package com.epex.shopskill.anubis.persistence.entity.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
-import org.springframework.data.mongodb.core.mapping.event.BeforeSaveEvent;
 
 import java.util.Date;
 
-@Data
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
 @Document(collection = "maat_user_credential")
-public class UserCredential extends AbstractMongoEventListener<UserCredential> {
+public class UserCredential {
 
-    private ObjectId _id;
+    @Autowired
+    public UserCredential() {
+        Date now = new Date();
+        this.creationDate = now.getTime();
+        this.lastLoggedOn = now.getTime();
+        this.isActive = false;
+        this.passwordModifedOn = now.getTime();
+    }
 
+    @Id
+    private String _id;
+
+    @Setter
     private String userId;
-    private String name;
 
+    @Setter
+    private String fullName;
+
+    @Setter
     @Indexed(unique = true)
     private String email;
 
-    private Date creationDate;
-    private Date lastLoggedOn;
+    private Long creationDate;
+
+    private Long lastLoggedOn;
+
     private boolean isActive;
 
+    @Setter
     private String password;
-    private String encodedPassword;
-    private Date passwordModifedOn;
 
-    @Override
-    public void onBeforeSave(BeforeSaveEvent<UserCredential> event) {
-        UserCredential source = event.getSource();
-        Date now = new Date();
-        source.setCreationDate(now);
-        source.setLastLoggedOn(now);
-        source.setActive(false);
-        source.setEncodedPassword(source.getPassword());
-        source.setPasswordModifedOn(now);
-    }
+    @Setter
+    private String encodedPassword;
+
+    private Long passwordModifedOn;
+
 }

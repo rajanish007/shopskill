@@ -3,8 +3,6 @@ package com.epex.shopskill.khepri.command;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
@@ -13,12 +11,12 @@ import java.util.UUID;
 @NoArgsConstructor
 public abstract class Command {
 
-    private UUID commandId;
+    private String commandId;
 
-    private UUID transactionId;
+    private String transactionId;
 
-    Command(UUID transactionId){
-        this.commandId = UUID.randomUUID();
+    Command(String transactionId) {
+        this.commandId = UUID.randomUUID().toString();
         this.transactionId = transactionId;
     }
 }

@@ -11,11 +11,8 @@ public class UserRegistrationResponseVO {
 
     private String userId;
 
-    private String fname;
-
-    private String lname;
+    private String fullName;
 
     private String email;
 
-    private String password;
 }

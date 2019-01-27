@@ -1,4 +1,4 @@
-package com.epex.shopskill.config.mongo;
+package com.epex.shopskill.khepri.config.mongo;
 
 import lombok.Data;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;

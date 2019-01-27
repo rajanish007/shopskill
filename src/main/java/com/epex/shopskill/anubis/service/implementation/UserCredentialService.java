@@ -18,7 +18,7 @@ public class UserCredentialService implements UserCredentialManager {
     @Override
     public UserCredentialDto createUserCredential(UserCredentialDto userCredential) {
         UserCredential mappedEntity = UserMapper.map(userCredential);
-        mappedEntity = credentialRepository.save(mappedEntity);
+        mappedEntity = credentialRepository.insert(mappedEntity);
         return UserMapper.map(mappedEntity);
     }
 

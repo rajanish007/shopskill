@@ -5,9 +5,10 @@ import com.epex.shopskill.anubis.persistence.entity.user.UserCredential;
 import com.epex.shopskill.anubis.persistence.repository.UserCredentialRepository;
 import com.epex.shopskill.anubis.service.mapper.UserMapper;
 import com.epex.shopskill.anubis.service.prototype.UserCredentialManager;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserCredentialService implements UserCredentialManager {
@@ -18,22 +19,40 @@ public class UserCredentialService implements UserCredentialManager {
     @Override
     public UserCredentialDto createUserCredential(UserCredentialDto userCredential) {
         UserCredential mappedEntity = UserMapper.map(userCredential);
-        mappedEntity = credentialRepository.insert(mappedEntity);
+        mappedEntity = credentialRepository.save(mappedEntity);
         return UserMapper.map(mappedEntity);
     }
 
     @Override
     public UserCredentialDto updateUserCredential(UserCredentialDto userCredential) {
-        return null;
+        UserCredential persistedCredential = credentialRepository.findByUserId(userCredential.getUserId());
+        if (persistedCredential != null) {
+            userCredential.set_id(persistedCredential.get_id());
+            UserCredential mappedEntity = UserMapper.map(userCredential);
+            mappedEntity = credentialRepository.save(mappedEntity);
+            return UserMapper.map(mappedEntity);
+        } else {
+            throw new IllegalArgumentException("User with userId = " + userCredential.getUserId() + " does not exist !\n");
+        }
     }
 
     @Override
-    public UserCredentialDto getUserCredential(ObjectId nativeUserId) {
-        return null;
+    public UserCredentialDto getUserCredential(String nativeUserId) {
+        Optional<UserCredential> persistedCredential = credentialRepository.findById(nativeUserId);
+        if (persistedCredential != null) {
+            return UserMapper.map(persistedCredential.get());
+        } else {
+            throw new IllegalArgumentException("User with native Id = " + nativeUserId + " does not exist !\n");
+        }
     }
 
     @Override
-    public void deleteUserCredential(ObjectId nativeUserId) {
-
+    public void deleteUserCredential(String nativeUserId) {
+        Optional<UserCredential> persistedCredential = credentialRepository.findById(nativeUserId);
+        try {
+            credentialRepository.delete(persistedCredential.get());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("User with native Id = " + nativeUserId + " does not exist !\n");
+        }
     }
 }

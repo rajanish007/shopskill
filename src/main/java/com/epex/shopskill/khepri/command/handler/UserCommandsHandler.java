@@ -31,6 +31,7 @@ public class UserCommandsHandler {
         credentialDto.setEncodedPassword(Encryption.encode(command.getPayload().getPassword()));
 
         credentialDto = userCredentialService.createUserCredential(credentialDto);
+
         responseVO.setEmail(credentialDto.getEmail());
         responseVO.setFullName(credentialDto.getFullName());
         responseVO.setUserId(credentialDto.getUserId());

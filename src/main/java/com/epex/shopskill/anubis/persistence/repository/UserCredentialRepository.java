@@ -5,4 +5,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface UserCredentialRepository extends MongoRepository<UserCredential, String> {
 
+    public UserCredential findByUserId(String userId);
 }

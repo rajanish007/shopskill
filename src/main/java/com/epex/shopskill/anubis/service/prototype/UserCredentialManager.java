@@ -9,8 +9,8 @@ public interface UserCredentialManager {
 
     public UserCredentialDto updateUserCredential(UserCredentialDto userCredential);
 
-    public UserCredentialDto getUserCredential(ObjectId nativeUserId);
+    public UserCredentialDto getUserCredential(String nativeUserId);
 
-    public void deleteUserCredential(ObjectId nativeUserId);
+    public void deleteUserCredential(String nativeUserId);
 
 }

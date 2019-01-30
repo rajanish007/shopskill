@@ -5,7 +5,7 @@ import com.epex.shopskill.anubis.persistence.entity.user.UserCredential;
 
 import java.util.Date;
 
-public class UserMapper {
+public class UserSecurityMapper {
 
     public static UserCredentialDto map(UserCredential entity) {
         UserCredentialDto dto = new UserCredentialDto();

@@ -15,4 +15,5 @@ public class UserRegistrationResponseVO {
 
     private String email;
 
+    private Long dob;
 }

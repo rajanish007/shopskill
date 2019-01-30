@@ -3,7 +3,7 @@ package com.epex.shopskill.anubis.service.implementation;
 import com.epex.shopskill.anubis.model.UserCredentialDto;
 import com.epex.shopskill.anubis.persistence.entity.user.UserCredential;
 import com.epex.shopskill.anubis.persistence.repository.UserCredentialRepository;
-import com.epex.shopskill.anubis.service.mapper.UserMapper;
+import com.epex.shopskill.anubis.service.mapper.UserSecurityMapper;
 import com.epex.shopskill.anubis.service.prototype.UserCredentialManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +18,9 @@ public class UserCredentialService implements UserCredentialManager {
 
     @Override
     public UserCredentialDto createUserCredential(UserCredentialDto userCredential) {
-        UserCredential mappedEntity = UserMapper.map(userCredential);
+        UserCredential mappedEntity = UserSecurityMapper.map(userCredential);
         mappedEntity = credentialRepository.save(mappedEntity);
-        return UserMapper.map(mappedEntity);
+        return UserSecurityMapper.map(mappedEntity);
     }
 
     @Override
@@ -28,9 +28,9 @@ public class UserCredentialService implements UserCredentialManager {
         UserCredential persistedCredential = credentialRepository.findByUserId(userCredential.getUserId());
         if (persistedCredential != null) {
             userCredential.set_id(persistedCredential.get_id());
-            UserCredential mappedEntity = UserMapper.map(userCredential);
+            UserCredential mappedEntity = UserSecurityMapper.map(userCredential);
             mappedEntity = credentialRepository.save(mappedEntity);
-            return UserMapper.map(mappedEntity);
+            return UserSecurityMapper.map(mappedEntity);
         } else {
             throw new IllegalArgumentException("User with userId = " + userCredential.getUserId() + " does not exist !\n");
         }
@@ -40,7 +40,7 @@ public class UserCredentialService implements UserCredentialManager {
     public UserCredentialDto getUserCredential(String nativeUserId) {
         Optional<UserCredential> persistedCredential = credentialRepository.findById(nativeUserId);
         if (persistedCredential != null) {
-            return UserMapper.map(persistedCredential.get());
+            return UserSecurityMapper.map(persistedCredential.get());
         } else {
             throw new IllegalArgumentException("User with native Id = " + nativeUserId + " does not exist !\n");
         }

@@ -15,11 +15,14 @@ public class UserInfo {
     private String _id;
 
     /*User Related Fields */
+    @Indexed(unique = true)
     private String userId;
+
     private String fullName;
 
     @Indexed(unique = true)
     private String email;
-    private String dob;
+
+    private Long dob;
 
 }

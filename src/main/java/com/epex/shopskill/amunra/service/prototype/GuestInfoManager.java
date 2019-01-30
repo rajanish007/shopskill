@@ -6,7 +6,7 @@ public interface GuestInfoManager {
 
     public GuestInfoDto getGuestInfo(String guestId);
 
-    public GuestInfoDto createGustInfo(GuestInfoDto guestInfoDto);
+    public GuestInfoDto createGuestInfo(GuestInfoDto guestInfoDto);
 
     public GuestInfoDto updateGuestInfo(GuestInfoDto guestInfoDto);
 

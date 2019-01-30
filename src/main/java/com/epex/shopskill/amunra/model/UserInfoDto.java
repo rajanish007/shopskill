@@ -15,5 +15,5 @@ public class UserInfoDto {
     private String fullName;
 
     private String email;
-    private String dob;
+    private Long dob;
 }

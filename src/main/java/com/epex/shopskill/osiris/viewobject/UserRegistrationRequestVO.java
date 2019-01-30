@@ -14,12 +14,13 @@ public class UserRegistrationRequestVO {
 
     @NotNull
     @Size(min = 6, max = 20)
-    @Valid
     private String userId;
 
     @NotNull
-    @Valid
     private String fullName;
+
+    @NotNull
+    private Long dob;
 
     @NotNull
     @ValidEmail
